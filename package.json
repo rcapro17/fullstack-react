@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "axios": "^1.7.2"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "react-scripts": "latest"
+  },
+  "scripts": {
+    "start": "concurrently \"npm run start-react\" \"npm run start-backend\"",
+    "start-react": "react-scripts start",
+    "start-backend": "python ../app.py"
+  }
+}
