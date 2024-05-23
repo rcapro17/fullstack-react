@@ -13,7 +13,7 @@ const ProfileList = () => {
 
   const fetchProfiles = () => {
     axios
-      .get('http://localhost:5050/api/profiles')
+      .get('http://localhost:5051/api/profiles')
       .then((response) => {
         setProfiles(response.data.profiles);
       })
@@ -27,7 +27,7 @@ const ProfileList = () => {
     const newProfile = { nome, endereco, telefone };
 
     axios
-      .post('http://localhost:5050/api/profiles', newProfile)
+      .post('http://localhost:5051/api/profiles', newProfile)
       .then((response) => {
         setProfiles([...profiles, response.data]);
         setNome('');
@@ -40,45 +40,67 @@ const ProfileList = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>Profiles</h1>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="nome">Nome:</label>
+        <div className="mb-3">
+          <label htmlFor="nome" className="form-label">
+            Nome:
+          </label>
           <input
             type="text"
+            className="form-control"
             id="nome"
             value={nome}
             onChange={(e) => setNome(e.target.value)}
           />
         </div>
-        <div>
-          <label htmlFor="endereco">Endereco:</label>
+        <div className="mb-3">
+          <label htmlFor="endereco" className="form-label">
+            Endereco:
+          </label>
           <input
             type="text"
+            className="form-control"
             id="endereco"
             value={endereco}
             onChange={(e) => setEndereco(e.target.value)}
           />
         </div>
-        <div>
-          <label htmlFor="telefone">Telefone:</label>
+        <div className="mb-3">
+          <label htmlFor="telefone" className="form-label">
+            Telefone:
+          </label>
           <input
             type="text"
+            className="form-control"
             id="telefone"
             value={telefone}
             onChange={(e) => setTelefone(e.target.value)}
           />
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit" className="btn btn-primary">
+          Submit
+        </button>
       </form>
-      <ul>
-        {profiles.map((profile) => (
-          <li key={profile.id}>
-            {profile.nome} - {profile.endereco} - {profile.telefone}
-          </li>
-        ))}
-      </ul>
+      <table className="table mt-3">
+        <thead>
+          <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Endereco</th>
+            <th scope="col">Telefone</th>
+          </tr>
+        </thead>
+        <tbody>
+          {profiles.map((profile) => (
+            <tr key={profile.id}>
+              <td>{profile.nome}</td>
+              <td>{profile.endereco}</td>
+              <td>{profile.telefone}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

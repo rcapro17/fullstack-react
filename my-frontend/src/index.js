@@ -1,5 +1,7 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './components/ProfileList.css';
 import './index.css';
 import App from './App';
 
